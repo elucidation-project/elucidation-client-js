@@ -6,5 +6,5 @@ export interface ConnectionEvent {
   eventDirection: Direction;
   communicationType: string;
   connectionIdentifier: string;
-  observedAt?: number;
+  observedAt: number;
 }
