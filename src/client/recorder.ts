@@ -1,9 +1,8 @@
 import axios from "axios";
-import {ElucidationResult} from "./result";
-import {ConnectionEvent} from "../model/connection-event";
+import { ElucidationResult } from "./result";
+import { ConnectionEvent } from "../model/connection-event";
 
 export class ElucidationRecorder {
-
   private readonly baseUri: string | (() => string);
 
   constructor(baseUri: string | (() => string)) {
@@ -20,7 +19,10 @@ export class ElucidationRecorder {
 
   async recordNewEvent(event: ConnectionEvent): Promise<ElucidationResult> {
     try {
-      const response = await axios.post(`${this.resolveBaseUri()}/elucidate/event`, event);
+      const response = await axios.post(
+        `${this.resolveBaseUri()}/elucidate/event`,
+        event,
+      );
 
       if (response.status >= 200 && response.status < 300) {
         return ElucidationResult.ok();
@@ -33,9 +35,16 @@ export class ElucidationRecorder {
     }
   }
 
-  async track(serviceName: string, communicationType: string, identifiers: Array<string>): Promise<ElucidationResult> {
+  async track(
+    serviceName: string,
+    communicationType: string,
+    identifiers: Array<string>,
+  ): Promise<ElucidationResult> {
     try {
-      const response = await axios.post(`${this.resolveBaseUri()}/elucidate/trackedIdentifier/${serviceName}/${communicationType}`, identifiers);
+      const response = await axios.post(
+        `${this.resolveBaseUri()}/elucidate/trackedIdentifier/${serviceName}/${communicationType}`,
+        identifiers,
+      );
 
       if (response.status >= 200 && response.status < 300) {
         return ElucidationResult.ok();

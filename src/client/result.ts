@@ -1,7 +1,7 @@
 export enum Status {
   SUCCESS = "SUCCESS",
   SKIPPED = "SKIPPED",
-  ERROR = "ERROR"
+  ERROR = "ERROR",
 }
 
 export class ElucidationResult {
@@ -9,7 +9,7 @@ export class ElucidationResult {
     public status: Status,
     public skipMessage: string | null = null,
     public errorMessage: string | null = null,
-    public exception: Error | null = null
+    public exception: Error | null = null,
   ) {}
 
   static ok(): ElucidationResult {
